@@ -198,8 +198,8 @@ export default function MysteryExperience() {
                 transition={{ delay: 0.7 }}
               >
                 <p className="text-card/80 leading-relaxed mb-6 italic">
-                  O diário revela mais uma página de segredos esquecidos pelo tempo.
-                  Os símbolos brilham fracamente sob a luz, esperando serem decifrados...
+                  siga confiante em suas respostas.
+                  o tempo passa mas sera que voce esta proxima de sua recompensa?...
                 </p>
               </motion.div>
 
