@@ -19,9 +19,9 @@ export const chapter1: Chapter = {
     "\"Onde a sombra encontra a luz, o primeiro número se revela.\" Há marcas de tinta seca ao redor, " +
     "como se quem escreveu tivesse hesitado antes de continuar...",
 
-  hint: "Conte quantas letras existem na palavra MISTÉRIO.",
+  hint: "Talvez seja a hora de se mover 24 passos pro lado",
 
-  // Resposta correta: 8 (número de letras em "MISTÉRIO")
+ 
   validateAnswer: (answer) => {
     const normalized = normalizeAnswer(answer)
     return normalized === "8" || normalized === "oito"
