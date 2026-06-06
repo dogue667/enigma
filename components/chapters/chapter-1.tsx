@@ -12,14 +12,14 @@ import { type Chapter, normalizeAnswer } from "./types"
  */
 export const chapter1: Chapter = {
   id: 1,
-  title: "O Primeiro Sinal",
+  title: "o segredo da crunchyroll",
 
   narrative:
     "O diário se abre numa página amarelada pelo tempo. Uma única frase foi rabiscada às pressas: " +
     "\"Onde a sombra encontra a luz, o primeiro número se revela.\" Há marcas de tinta seca ao redor, " +
     "como se quem escreveu tivesse hesitado antes de continuar...",
 
-  hint: "Talvez seja a hora de se mover 24 passos pro lado",
+  hint: "Talvez seja a hora de se mover 24 passos pra direita",
 
  
   validateAnswer: (answer) => {

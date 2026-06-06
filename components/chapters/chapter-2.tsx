@@ -7,10 +7,10 @@ import { type Chapter, normalizeAnswer } from "./types"
  */
 export const chapter2: Chapter = {
   id: 2,
-  title: "Símbolos Ocultos",
+  title: "O princípio da alquimia",
 
   narrative:
-    "Símbolos estranhos cobrem a margem da página. Triângulos, olhos e estrelas se entrelaçam " +
+    "O princípio fundamental da alquimia " +
     "numa dança silenciosa. No canto inferior, uma anotação: \"O que tudo vê, mas nunca dorme?\"",
 
   hint: "Pense em algo que está sempre observando, presente em pirâmides e cédulas antigas.",
