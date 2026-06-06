@@ -55,43 +55,58 @@
 
 :root {
   --background: #1a1410;
-  --foreground: #e8e0d5;
-  --card: #2d251e;
-  --card-foreground: #e8e0d5;
-  --popover: #231c16;
-  --popover-foreground: #e8e0d5;
-  --primary: #c9a227;
-  --primary-foreground: #1a1410;
-  --secondary: #3d3229;
-  --secondary-foreground: #d9cfc2;
-  --muted: #2a231c;
-  --muted-foreground: #9c8b7a;
-  --accent: #b8942a;
-  --accent-foreground: #1a1410;
-  --destructive: #a53030;
-  --border: #4a3f35;
-  --input: #352d25;
-  --ring: #c9a227;
-  --chart-1: #c9a227;
-  --chart-2: #a68820;
-  --chart-3: #8a7019;
-  --chart-4: #6e5a15;
-  --chart-5: #524311;
-  --radius: 0.5rem;
-  --gold: #c9a227;
-  --gold-dark: #8b7019;
-  --parchment: #d9cfc2;
-  --parchment-dark: #c4b8a8;
-  --sidebar: #1f1914;
-  --sidebar-foreground: #e8e0d5;
-  --sidebar-primary: #c9a227;
-  --sidebar-primary-foreground: #1a1410;
-  --sidebar-accent: #352d25;
-  --sidebar-accent-foreground: #e8e0d5;
-  --sidebar-border: #4a3f35;
-  --sidebar-ring: #c9a227;
-}
+  --foreground: #f3ece3;
 
+  --card: #2d251e;
+  --card-foreground: #f3ece3;
+
+  --popover: #231c16;
+  --popover-foreground: #f3ece3;
+
+  --primary: #d4af37;
+  --primary-foreground: #1a1410;
+
+  --secondary: #3d3229;
+  --secondary-foreground: #efe3d2;
+
+  --muted: #2a231c;
+  --muted-foreground: #c8b9a8;
+
+  --accent: #c9a227;
+  --accent-foreground: #1a1410;
+
+  --destructive: #c44b4b;
+
+  --border: #6a5b4d;
+  --input: #352d25;
+  --ring: #d4af37;
+
+  --chart-1: #d4af37;
+  --chart-2: #b8942a;
+  --chart-3: #9a7d24;
+  --chart-4: #7d641d;
+  --chart-5: #5f4b15;
+
+  --radius: 0.5rem;
+
+  --gold: #d4af37;
+  --gold-dark: #9a7d24;
+
+  --parchment: #efe3d2;
+  --parchment-dark: #d9cbb8;
+
+  --sidebar: #1f1914;
+  --sidebar-foreground: #f3ece3;
+
+  --sidebar-primary: #d4af37;
+  --sidebar-primary-foreground: #1a1410;
+
+  --sidebar-accent: #352d25;
+  --sidebar-accent-foreground: #f3ece3;
+
+  --sidebar-border: #6a5b4d;
+  --sidebar-ring: #d4af37;
+}
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -211,4 +226,17 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gold);
+}
+.text-muted-foreground {
+  color: var(--muted-foreground) !important;
+}
+
+.text-foreground {
+  color: var(--foreground) !important;
+}
+
+p,
+span,
+label {
+  line-height: 1.7;
 }
