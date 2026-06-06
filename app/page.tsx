@@ -14,20 +14,30 @@ import { ProgressScreen } from "@/components/progress-screen"
 import { FloatingSymbols } from "@/components/floating-symbols"
 import { DustParticles } from "@/components/dust-particles"
 import { TypewriterEffect } from "@/components/typewriter-effect"
+import { chapters as chapterContent } from "@/components/chapters"
 
-// Sample chapters data - replace with your own puzzles
-const chaptersData = [
-  { id: 1, title: "O inicio de tudo", isCompleted: false, isCurrent: true, isLocked: false },
-  { id: 2, title: "O princípio da alquimia ", isCompleted: false, isCurrent: false, isLocked: true },
-  { id: 3, title: "A Cifra de Cezar...", isCompleted: false, isCurrent: false, isLocked: true },
-  { id: 4, title: "Vozes do Passado", isCompleted: false, isCurrent: false, isLocked: true },
-  { id: 5, title: "O Último Enigma", isCompleted: false, isCurrent: false, isLocked: true },
-]
+// Estado de progresso de cada capítulo, derivado do conteúdo importado.
+// O CONTEÚDO dos enigmas fica em components/chapters/chapter-N.tsx
+type ChapterProgress = {
+  id: number
+  title: string
+  isCompleted: boolean
+  isCurrent: boolean
+  isLocked: boolean
+}
+
+const initialProgress: ChapterProgress[] = chapterContent.map((ch, index) => ({
+  id: ch.id,
+  title: ch.title,
+  isCompleted: false,
+  isCurrent: index === 0,
+  isLocked: index !== 0,
+}))
 
 export default function MysteryExperience() {
   const [gameState, setGameState] = useState<"start" | "playing" | "final">("start")
-  const [chapters, setChapters] = useState(chaptersData)
-  const [currentChapter, setCurrentChapter] = useState(1)
+  const [progressList, setProgressList] = useState<ChapterProgress[]>(initialProgress)
+  const [currentChapter, setCurrentChapter] = useState(chapterContent[0]?.id ?? 1)
   const [showAchievement, setShowAchievement] = useState(false)
   const [achievementData, setAchievementData] = useState({ title: "", description: "" })
   const [showTransition, setShowTransition] = useState(false)
@@ -35,56 +45,61 @@ export default function MysteryExperience() {
   const [showProgressScreen, setShowProgressScreen] = useState(false)
   const [answerResult, setAnswerResult] = useState<boolean | null>(null)
 
-  const totalChapters = chapters.length
-  const completedChapters = chapters.filter((c) => c.isCompleted).length
+  const totalChapters = progressList.length
+  const completedChapters = progressList.filter((c) => c.isCompleted).length
   const progress = (completedChapters / totalChapters) * 100
+
+  // Conteúdo do capítulo atual (texto, dica, validação, etc.)
+  const currentContent = chapterContent.find((c) => c.id === currentChapter)
+  const currentProgress = progressList.find((c) => c.id === currentChapter)
+  const isLastChapter = currentChapter === chapterContent[chapterContent.length - 1]?.id
 
   const handleStart = () => {
     setGameState("playing")
   }
 
-  const handlePuzzleSubmit = useCallback((answer: string) => {
-    // This is where you would validate the puzzle answer
-    // For demo purposes, any answer is "correct"
-    console.log("Answer submitted:", answer)
-    
-    // Simulate checking answer
-    const isCorrect = answer.length > 0 // Replace with actual validation
-    setAnswerResult(isCorrect)
+  const handlePuzzleSubmit = useCallback(
+    (answer: string) => {
+      if (!currentContent) return
 
-    if (isCorrect) {
-      // Show achievement
-      setTimeout(() => {
-        setAchievementData({
-          title: `Capítulo ${currentChapter} Completo`,
-          description: "Você esta cada vez mais proximo...",
-        })
-        setShowAchievement(true)
-      }, 500)
+      // Valida usando a função definida no arquivo do capítulo
+      const isCorrect = currentContent.validateAnswer(answer)
+      setAnswerResult(isCorrect)
 
-      // Update chapter status and move to next
-      setTimeout(() => {
-        if (currentChapter < totalChapters) {
-          setTransitionChapters({ from: currentChapter, to: currentChapter + 1 })
-          setShowTransition(true)
-        } else {
-          // Final chapter completed
-          setGameState("final")
-        }
-      }, 2000)
-    } else {
-      // Reset after wrong answer
-      setTimeout(() => setAnswerResult(null), 1500)
-    }
-  }, [currentChapter, totalChapters])
+      if (isCorrect) {
+        // Mostra a conquista definida no arquivo do capítulo
+        setTimeout(() => {
+          setAchievementData({
+            title: currentContent.achievementTitle,
+            description: currentContent.achievementDescription,
+          })
+          setShowAchievement(true)
+        }, 500)
+
+        // Avança para o próximo capítulo (ou tela final)
+        setTimeout(() => {
+          if (!isLastChapter) {
+            setTransitionChapters({ from: currentChapter, to: currentChapter + 1 })
+            setShowTransition(true)
+          } else {
+            setGameState("final")
+          }
+        }, 2000)
+      } else {
+        // Limpa o erro após um instante
+        setTimeout(() => setAnswerResult(null), 1500)
+      }
+    },
+    [currentContent, currentChapter, isLastChapter],
+  )
 
   const handleTransitionComplete = () => {
-    setChapters((prev) =>
+    setProgressList((prev) =>
       prev.map((ch) => {
         if (ch.id === currentChapter) return { ...ch, isCompleted: true, isCurrent: false }
         if (ch.id === currentChapter + 1) return { ...ch, isCurrent: true, isLocked: false }
         return ch
-      })
+      }),
     )
     setCurrentChapter((prev) => prev + 1)
     setShowTransition(false)
@@ -92,19 +107,18 @@ export default function MysteryExperience() {
   }
 
   const handleChapterSelect = (chapterId: number) => {
-    const chapter = chapters.find((c) => c.id === chapterId)
+    const chapter = progressList.find((c) => c.id === chapterId)
     if (chapter && !chapter.isLocked) {
-      setChapters((prev) =>
+      setProgressList((prev) =>
         prev.map((ch) => ({
           ...ch,
           isCurrent: ch.id === chapterId,
-        }))
+        })),
       )
       setCurrentChapter(chapterId)
+      setAnswerResult(null)
     }
   }
-
-  const currentChapterData = chapters.find((c) => c.id === currentChapter)
 
   return (
     <main className="relative min-h-screen bg-background">
@@ -113,9 +127,7 @@ export default function MysteryExperience() {
       <DustParticles />
 
       {/* Start Screen */}
-      <AnimatePresence>
-        {gameState === "start" && <StartScreen onStart={handleStart} />}
-      </AnimatePresence>
+      <AnimatePresence>{gameState === "start" && <StartScreen onStart={handleStart} />}</AnimatePresence>
 
       {/* Main Game Interface */}
       <AnimatePresence>
@@ -137,7 +149,7 @@ export default function MysteryExperience() {
                 >
                   Os Arquivos Proibidos
                 </motion.h1>
-                
+
                 <motion.button
                   onClick={() => setShowProgressScreen(true)}
                   className="px-4 py-2 text-sm text-muted-foreground border border-border rounded-lg
@@ -149,11 +161,7 @@ export default function MysteryExperience() {
                 </motion.button>
               </div>
 
-              <ProgressBar
-                progress={progress}
-                chapter={currentChapter}
-                totalChapters={totalChapters}
-              />
+              <ProgressBar progress={progress} chapter={currentChapter} totalChapters={totalChapters} />
             </header>
 
             {/* Chapter Navigator */}
@@ -163,14 +171,11 @@ export default function MysteryExperience() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              <ChapterNavigator
-                chapters={chapters}
-                onChapterSelect={handleChapterSelect}
-              />
+              <ChapterNavigator chapters={progressList} onChapterSelect={handleChapterSelect} />
             </motion.div>
 
             {/* Journal Page */}
-            <JournalPage>
+            <JournalPage key={currentChapter}>
               {/* Chapter title */}
               <motion.div
                 className="text-center mb-8"
@@ -182,30 +187,25 @@ export default function MysteryExperience() {
                   Capítulo {currentChapter}
                 </p>
                 <h2 className="text-3xl font-bold text-card mb-4">
-                  <TypewriterEffect
-                    text={currentChapterData?.title || ""}
-                    speed={80}
-                  />
+                  <TypewriterEffect text={currentProgress?.title || ""} speed={80} />
                 </h2>
                 <div className="w-24 h-px bg-gradient-to-r from-transparent via-gold-dark to-transparent mx-auto" />
               </motion.div>
 
-              {/* Puzzle content area */}
+              {/* Narrative text from chapter file */}
               <motion.div
                 className="mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
               >
-                <p className="text-card/80 leading-relaxed mb-6 italic">
-                  siga confiante em suas respostas.
-                  o tempo passa mas sera que voce esta proxima de sua recompensa?...
-                </p>
+                <p className="text-card/80 leading-relaxed mb-6 italic">{currentContent?.narrative}</p>
               </motion.div>
 
-              {/* Puzzle Area */}
+              {/* Puzzle Area - content/hint from chapter file */}
               <PuzzleArea
-                hint="Observe atentamente os padrões. A resposta está escondida à vista de todos..."
+                puzzleContent={currentContent?.puzzleContent}
+                hint={currentContent?.hint}
                 onSubmit={handlePuzzleSubmit}
                 isCorrect={answerResult}
               />
@@ -218,9 +218,7 @@ export default function MysteryExperience() {
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
             >
-              <p className="text-xs text-muted-foreground/50 tracking-wider">
-                ◇ DOCUMENTO CLASSIFICADO ◇
-              </p>
+              <p className="text-xs text-muted-foreground/50 tracking-wider">{"\u25C7 DOCUMENTO CLASSIFICADO \u25C7"}</p>
             </motion.div>
           </motion.div>
         )}
@@ -249,7 +247,7 @@ export default function MysteryExperience() {
       <AnimatePresence>
         {showProgressScreen && (
           <ProgressScreen
-            chapters={chapters}
+            chapters={progressList}
             completedPercentage={progress}
             onClose={() => setShowProgressScreen(false)}
           />

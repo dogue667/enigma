@@ -10,8 +10,8 @@ const crimsonText = Crimson_Text({
 })
 
 export const metadata: Metadata = {
-  title: 'O presente secreto',
-  description: 'Sera que voce sera capaz de ser merecedora(o) dele?...',
+  title: 'Os Arquivos Proibidos',
+  description: 'Um mistério aguarda ser desvendado...',
   generator: 'v0.app',
   icons: {
     icon: [
