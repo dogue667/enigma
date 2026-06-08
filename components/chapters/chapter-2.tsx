@@ -9,11 +9,11 @@ export const chapter2: Chapter = {
   id: 2,
   title: "O princípio da alquimia",
 
-  narrative:
-    "O princípio fundamental da alquimia " +
-    "numa dança silenciosa. No canto inferior, uma anotação: \"O que tudo vê, mas nunca dorme?\"",
+narrative:
+  "A Verdade cobra um preço. De quem só enxerga a vingança, o que ela pode tirar?",
 
-  hint: "Pense em algo que está sempre observando, presente em pirâmides e cédulas antigas.",
+hint:
+  "Assista Fullmetal Alchemist.",
 
   // Conteúdo visual opcional do enigma
   puzzleContent: (
@@ -23,11 +23,11 @@ export const chapter2: Chapter = {
     </div>
   ),
 
-  // Resposta correta: "olho" (ou "olho que tudo vê")
+  
   validateAnswer: (answer) => {
-    const normalized = normalizeAnswer(answer)
-    return normalized.includes("olho")
-  },
+  const normalized = normalizeAnswer(answer)
+  return normalized === "visao"
+},
 
   achievementTitle: "Capítulo 2 Completo",
   achievementDescription: "Os símbolos revelaram seu segredo. Você está sendo observado...",
