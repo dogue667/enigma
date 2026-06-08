@@ -14,7 +14,7 @@ import { type Chapter, normalizeAnswer } from "./types"
 
 export const chapter1: Chapter = {
   id: 1,
-  title: "o segredo da crunchyroll",
+  title: "O começo",
 
   narrative:
     "Cada vez mais perto da verdade...",
@@ -35,7 +35,7 @@ export const chapter1: Chapter = {
 
   validateAnswer: (answer) => {
     const normalized = normalizeAnswer(answer)
-    return normalized === "crunchyroll"
+      return normalized === "Esopo" || normalized === "esopo" || normalized === "esopo de cesareia"
   },
 
   achievementTitle: "Capítulo 1 Completo",
