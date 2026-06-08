@@ -17,13 +17,16 @@ hint:
 
   // Conteúdo visual opcional do enigma
   puzzleContent: (
-    <div className="text-center py-6">
-      <div className="text-6xl mb-4 animate-glow text-gold">{"\u25B3"}</div>
-      <p className="font-mono text-lg tracking-[0.3em] text-card/70">{"\u25C9   \u2727   \u25B3"}</p>
-    </div>
-  ),
-
-  
+  <div className="text-center py-6">
+    <p className="text-lg leading-relaxed text-card">
+      A Verdade exige um preço equivalente.
+      <br />
+      Quando um alquimista busca apenas vingança,
+      <br />
+      o que ela pode tomar dele?
+    </p>
+  </div>
+),
   validateAnswer: (answer) => {
   const normalized = normalizeAnswer(answer)
   return normalized === "visao"
