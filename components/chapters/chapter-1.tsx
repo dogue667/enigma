@@ -17,7 +17,7 @@ export const chapter1: Chapter = {
   title: "o segredo da crunchyroll",
 
   narrative:
-    "O diário se abre numa página amarelada pelo tempo...",
+    "Cada vez mais perto da verdade...",
 
   puzzleContent: (
     <div className="text-center">
@@ -26,7 +26,7 @@ export const chapter1: Chapter = {
       </h2>
 
       <p>
-        Qual é o nome da plataforma de animes mais famosa?
+        frrnq://bmaq.emmejc.amk/bmaskclr/b/13VU9Cu6VxfJtA7IECrn0S3lOW-XfFc251ByCY-6SYvC/cbgr?sqn=qfypgle
       </p>
     </div>
   ),
