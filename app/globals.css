@@ -240,3 +240,71 @@ span,
 label {
   line-height: 1.7;
 }
+/* =========================
+   MOBILE OPTIMIZED (GLOBAL)
+========================= */
+@media (max-width: 768px) {
+
+  html {
+    font-size: 15px;
+  }
+
+  body {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  p,
+  span,
+  label {
+    line-height: 1.8;
+    font-size: 0.95rem;
+  }
+
+  h1, h2, h3 {
+    letter-spacing: 0.5px;
+  }
+
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* container mais confortável */
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* cards mais suaves no mobile */
+  .card {
+    border-radius: 12px;
+  }
+
+  /* textura mais leve (performance) */
+  .paper-texture {
+    background-size: 300px;
+    opacity: 0.9;
+  }
+
+  /* scroll mais fino */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  /* desliga efeitos pesados */
+  .animate-glow,
+  .animate-pulse-gold {
+    animation: none;
+  }
+
+  /* float mais leve */
+  .animate-float {
+    animation: float 10s ease-in-out infinite;
+  }
+
+  /* vignette menos agressivo */
+  .vignette {
+    box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.6);
+  }
+}
