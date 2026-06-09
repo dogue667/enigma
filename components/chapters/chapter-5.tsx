@@ -11,25 +11,24 @@ export const chapter5: Chapter = {
   title: "O Último Enigma",
 
   narrative:
-    "A última página brilha com uma luz dourada. Todos os símbolos anteriores convergem aqui. " +
-    "Uma frase final permanece: \"Some os selos que rompeste e encontrarás a chave que abre a verdade.\"",
+    "Quatro vozes guiaram o caminho. Agora, só resta uma escolha silenciosa.",
 
-  hint: "Você desvendou 4 capítulos antes deste. Some os números de 1 a 5.",
+  hint: "junte todos os textos pos respostas certas",
 
   puzzleContent: (
     <div className="text-center py-6">
       <p className="font-mono text-2xl tracking-[0.3em] text-card animate-glow">
-        1 + 2 + 3 + 4 + 5 = ?
+       "..."
       </p>
     </div>
   ),
 
-  // Resposta correta: 15
+  // Resposta correta: tarot
   validateAnswer: (answer) => {
     const normalized = normalizeAnswer(answer)
-    return normalized === "15" || normalized === "quinze"
+    return normalized === "tarot" 
   },
 
   achievementTitle: "Mistério Desvendado",
-  achievementDescription: "Você rompeu o último selo. A verdade finalmente se revela diante de seus olhos.",
+  achievementDescription: `Você rompeu o último selo. A verdade finalmente se revela diante de seus olhos.`,
 }

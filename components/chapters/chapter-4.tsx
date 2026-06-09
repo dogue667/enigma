@@ -33,6 +33,7 @@ export const chapter4: Chapter = {
 
   achievementTitle: "Capítulo 4 Completo",
 
-  achievementDescription:
-    "As vozes do passado se calaram, satisfeitas. Falta apenas um selo...",
+achievementDescription: `Quando estruturas falsas caem,
+o que resta não é destruição — é clareza.
+Só entende o fim quem viu o começo.`,
 }

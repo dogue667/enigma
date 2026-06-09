@@ -27,6 +27,8 @@ export const chapter3: Chapter = {
     return normalized === "metronomo"
   },
 
-  achievementTitle: "Capítulo 3 Completo",
-  achievementDescription: "A cifra foi quebrada. As palavras escondidas agora pertencem a você.",
+achievementTitle: "Capítulo 3 Completo",
+achievementDescription: `Entre o que é dito e o que é guardado,
+existe um silêncio que observa tudo.
+A verdade não grita — ela espera.`,
 }

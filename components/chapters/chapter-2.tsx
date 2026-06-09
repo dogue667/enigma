@@ -32,6 +32,8 @@ hint:
   return normalized === "visao"
 },
 
-  achievementTitle: "Capítulo 2 Completo",
-  achievementDescription: "Os símbolos revelaram seu segredo. Você está sendo observado...",
+achievementTitle: "Capítulo 2 Completo",
+achievementDescription: `O primeiro passo não conhece destino.
+O que parte sem mapa confia no vazio.
+E no vazio, tudo ainda pode ser.`,
 }

@@ -35,9 +35,11 @@ export const chapter1: Chapter = {
 
   validateAnswer: (answer) => {
     const normalized = normalizeAnswer(answer)
-      return normalized === "Esopo" || normalized === "esopo" || normalized === "esopo de cesareia"
+      return normalized === "Esopo" || normalized === "esopo" || normalized === "esopo de cesareia" || normalized === "Esopo de cesareia"
   },
 
-  achievementTitle: "Capítulo 1 Completo",
-  achievementDescription: "O primeiro selo foi rompido.",
+achievementTitle: "Capítulo 1 Completo",
+achievementDescription: `O que transforma o invisível em forma,
+escreve o mundo com mãos que ninguém vê.
+Mas toda criação exige um preço oculto.`,
 }
