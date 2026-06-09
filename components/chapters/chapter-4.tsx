@@ -12,7 +12,7 @@ export const chapter4: Chapter = {
   narrative:
     "Olhe mais a fundo onde te mostram o caminho",
 
-  hint: "Talvez seja a hora de olhar mais fundo nos detalhes",
+  hint: "Talvez seja a hora de olhar mais fundo nos detalhes(chave:casa)",
 
   puzzleContent: (
     <div className="text-center py-6">
