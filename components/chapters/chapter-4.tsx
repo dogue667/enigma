@@ -7,20 +7,32 @@ import { type Chapter, normalizeAnswer } from "./types"
  */
 export const chapter4: Chapter = {
   id: 4,
-  title: "Vozes do Passado",
+  title: "O Local de Cura",
 
   narrative:
-    "Entre as páginas, uma carta antiga sussurra um enigma: \"Tenho cidades, mas não casas. " +
-    "Tenho montanhas, mas não árvores. Tenho água, mas não peixes. O que sou eu?\"",
+    "Olhe mais a fundo onde te mostram o caminho",
 
-  hint: "Você me usa para encontrar caminhos e lugares que nunca visitou.",
+  hint: "Talvez seja a hora de olhar mais fundo nos detalhes",
 
-  // Resposta correta: "mapa"
+  puzzleContent: (
+    <div className="text-center py-6">
+      <p className="text-lg leading-relaxed text-card">
+        ";:h\:&lt;H&lt;?P)/|QH?;?P;"
+      </p>
+    </div>
+  ),
+
   validateAnswer: (answer) => {
     const normalized = normalizeAnswer(answer)
-    return normalized === "mapa" || normalized === "um mapa"
+
+    return (
+      normalized === normalizeAnswer("Centro de Saúde Band Amir") ||
+      normalized === normalizeAnswer("مرکز صحی بند امير")
+    )
   },
 
   achievementTitle: "Capítulo 4 Completo",
-  achievementDescription: "As vozes do passado se calaram, satisfeitas. Falta apenas um selo...",
+
+  achievementDescription:
+    "As vozes do passado se calaram, satisfeitas. Falta apenas um selo...",
 }
