@@ -17,7 +17,7 @@ export const chapter4: Chapter = {
   puzzleContent: (
     <div className="text-center py-6">
       <p className="text-lg leading-relaxed text-card">
-        ";:h\:&lt;H&lt;?P)/|QH?;?P;"
+          {";:h\:<H<?P)/|QH?;?P;"}
       </p>
     </div>
   ),
