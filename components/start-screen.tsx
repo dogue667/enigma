@@ -96,7 +96,7 @@ export function StartScreen({ onStart }: StartScreenProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
         >
-          &quot;Alguns segredos foram feitos para serem encontrados...&quot;
+          &quot;Te desejo boa sorte tomi...&quot;
         </motion.p>
 
         {/* Start button */}
@@ -129,7 +129,7 @@ export function StartScreen({ onStart }: StartScreenProps) {
           transition={{ delay: 2.5, duration: 1 }}
         >
           <p className="text-xs text-muted-foreground/50 tracking-[0.3em] uppercase">
-            Nível de Classificação: Ultra Secreto
+            Nível de Classificação: tranquilo
           </p>
         </motion.div>
       </div>
